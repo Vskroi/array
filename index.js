@@ -310,6 +310,7 @@ function addFlavorO(flavor) {
       ];
     
     let str = (flavor + text).split(',')
+    str.pop()
    
  return str
   }
@@ -325,6 +326,14 @@ Your function should accept:
  
 For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
 
+   
+      function getFlavorByIndex(arr , index){
+if(index >= 0 && index < arr.length){
+    return arr[index]
+}
+}
+
+console.log(getFlavorByIndex(originalFlavors, 1))
 /* Task 5: As corporate wants to add more and more flavors to their lineup, they've realized that they need to remove flavors based on flavor name, as opposed to just arbitrarily removing the first or last flavor. Your task is to get an index by flavor name, and remove that flavor from the array.
  
 Your function should accept:
@@ -337,6 +346,23 @@ For example, removeFlavorByName(originalFlavors, "Vanilla") would return an arra
 Hint: You can use .splice() for this
  
 */
+// function removeFlavorByName( arr , string){
+// let venilla = arr.indexOf(string)
+
+// return arr[venilla] 
+
+// }
+// console.log(removeFlavorByName(originalFlavors, "Vanilla"))
+
+// function songoh(originalFlavors){
+//     let songosonUg = "Vanilla";
+//     for (i = 0; i <originalFlavors.length; i++){
+//         if(originalFlavors[i] = songosonUg){return originalFlavors[i] + originalFlavors.indexOf('Vanilla')
+// 
+//         }
+//     }
+// }
+// console.log(songoh(originalFlavors))
 
 /* Task 6: With all of these changes going on, we don't want to lose track of the actual, original 31 flavors. Write a function called copy that makes a copy of the array.
  
@@ -345,7 +371,17 @@ Your function should accept:
 2 arguments 1 for your new array and one for your original array
  
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
+const copytext = []
+function copy(arr,copy){ 
+    
+    for(let i = 0 ; i< arr.length; i++){
+        copy[i] = arr[i]
+    }
+    return copy
+    
 
+}
+console.log(copy(originalFlavors,copytext))
 /* Task 7: July 7th is "World Chocolate Day" and Baskin Robins wants to create promotional materials highlighting all of their chocolate flavors. Write a function that checks every item in the array for a given string and returns a new array called filteredArray with just these values. Rather than hardcoding "chocolate" into your function, pass a string as a parameter, and invoke with the argument "chocolate". This way you could also filter for "Vanilla", "Sherbert", etc. when those holidays roll around.
  
 Your function should accept:
@@ -361,17 +397,18 @@ DO NOT USE ADVANCED ARRAY METHODS (i.e. .filter) to solve this problem.
  
 hint - you can use the .includes method to help you solve this */
 
-// function filterByWord(array, word) {
-//   const filteredArray = [];
-//   array.forEach(function (flavor) {
-//     if (flavor.includes(word)) {
-//       console.log(flavor);
-//     }
-//   });
-//   //   return filteredArray;
-// }
+ function filterByWord(array, word) {
+   
+   array.forEach(function (flavor) {
+    
+     if (flavor.includes(word)) {
+        console.log(flavor);
+     }
+   });
+  
+ }
 
-// console.log(filterByWord(originalFlavors, "chocolate"));
+ console.log(filterByWord( originalFlavors , 'Chocolate'));
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/
 
 /* STRETCH 1: Write a function that returns the average number of words in an array. You should be able to use this function for any array, but can test with originalFlavors.
@@ -383,8 +420,124 @@ Your function should accept:
 and should return the average number of words per item in the array.
  
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
+const numberReturn = []
 
-function getAverageWordLength(/*code here*/) {
+function getAverageWordLength(code , number) {
     /*code here*/
+    for(let i = 0 ; i < code.length; i++ ){
+        number[i] = code[i].split(' ')
+        .filter((n) => { return n != '' })
+        .length
+        
+    }
+    
+    return number.reduce((num, num2) =>{return (num+=num2)/3})
 }
+console.log(getAverageWordLength(originalFlavors , numberReturn))
+
+//Array exercises 2
+// Exercise 1
+// Write a JavaScript function to sort three numbers in array. Return sorted array.
+// Sample numbers : [0, -1, 4]
+// Output : [4, 0, -1]
+// notes:
+//     https://www.geeksforgeeks.org/javascript-array-sort/
+//     https://www.w3schools.com/jsref/met_win_alert.asp
+ 
+// 1. write function ==> function will take array as input
+// 2. sort the numbers inside the array and return sorted array
+ 
+function sortedArray(array) {
+    let arr = array.sort((num1, num2)=>{return num1-num2})
+    return arr
+}
+ 
+console.log(sortedArray([5, 7, 10, -10, 56]));
+// ==> [56, 10, 7,5,-10]
+
+ 
+ 
+// 
+//Exercise 1
+// 
+//Create a function that will display the smallest value in the array.
+// 
+//Example:
+function sortedArray2(array) {
+    let arr = array.sort((num1, num2)=>{return num1-num2})
+    return arr[0]
+}
+console.log(sortedArray2([30, 45, 60, 7]));
+//> 1
+//
+// 
+//Exercise 2
+// 
+//Create a function that will accept an array, check the data type of each element. The function will delete string elements and will return a the new array
+// 
+//Example:
+function numbersOnly(text){
+let number = text.filter((num1,num2)=>num1>num2)
+return number
+}
+ console.log(numbersOnly(['text', 3, 7, 'github', 13, 'dev']));
+//> [ 3, 7, 13 ]
+// 
+//Exercise 3
+// 
+//Create a function that will accept an array and do the following:
+//Get the lowest element
+//Get the highest element
+//Get the length of array
+//Get the Average of all element;
+//Store these criteria in a new array
+// 
+//Example:
+function minMaxLengthAverage(number) {
+    const lowest = Math.min(...number);
+    const highest = Math.max(...number);
+    const length = number.length;
+    const average = number.reduce((sum, current) => sum + current, 0) / length;
+    return [lowest , highest, length, average];
+  }
+  console.log(minMaxLengthAverage([7, 13, 3, 77, 100]));
+//> [ 3, 100, 5, 40 ]
+// 
+//Exercise 4
+// 
+//Count the number of Words
+//Return how many words was given
+// 
+//Example:
+//> countWords('hello from kbpsystem!');
+//> 3
+// 
+//Exercise 5
+// 
+//Multiply by Length
+//Multiply all elements in an array by it's length
+// 
+//Example:
+//> MultiplyByLength([4,1,1]);
+function minMaxLengthAverage(number){
+ let a = number.map((num)=>num+1)
+return a
+}
+
+
+/* console.log(MultiplyByLength([4,1,1])) */
+//> [12, 3, 3]
+// 
+//Exercise 6
+// 
+//Find the correct Index location
+//Return the index location of an element from a given array. First argument is the array you'd like to search and the second one is the element (either string/number) to look for.
+// 
+//Example:
+//> console.log(findIndex(['github', 'gitlab', 'bitbucket', 'apollo'], 'gitlab'));
+//> 1
+// 
+//*/
+// 
+// 
 
